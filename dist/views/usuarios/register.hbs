@@ -1,0 +1,42 @@
+{{>nav-no-login}}
+{{>errors}}
+
+<div class="col-md-6 mx-auto mt-5">
+
+
+    <div class="card">
+        <div class="card-header bg-primary text-white text-center">
+            <h1> REGISTRO </h1>
+        </div>
+        
+        <div class="card-body">
+
+                <form action="/usuarios/register" method="POST">
+
+                    <div class="mb-3">
+                        <label for="nombre">NOMBRE</label>
+                        <input  id="nombre" type="text" class="form-control bg-dark text-white" name="nombre" placeholder="Nombre" value="{{valores.nombre}}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email">CORREO</label>
+                        <input  id="email" type="email" class="form-control bg-dark text-white" name="email" placeholder="Correo" value="{{valores.email}}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password">CONTRASEÑA</label>
+                        <input  id="password" type="password" class="form-control bg-dark text-white" name="password" placeholder="Contraseña">
+                    </div>
+                    
+                    <div class="d-grid gap-2">
+
+                    <button type="submit" class="btn btn-primary btn-block">ENVIAR</button>
+                    </div>
+
+                </form>
+
+        </div>
+
+        <div class="card-footer bg-primary text-white">
+                <p class="text-center mt-3">¿Ya tiene una cuenta?<br><a href="/usuarios/login" class="text-center text-info">INGRESAR</a></p>
+        </div>
+    </div>
+</div>

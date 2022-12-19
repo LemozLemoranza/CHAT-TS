@@ -1,0 +1,17 @@
+a{
+    text-decoration: none;
+    font-weight: bolder;
+}
+
+h1, .card-footer{
+    font-weight: bolder;
+}
+
+.btn{
+    font-size: 1em;
+    font-weight: bolder;
+}
+
+label{
+    font-weight: bolder;
+}

@@ -48,12 +48,12 @@ const UserExist = (value = '', req) => __awaiter(void 0, void 0, void 0, functio
         where: { email },
     });
     if (!userExist) {
-        throw new Error("Usuario o contraseña incorrectos - user");
+        throw new Error("Usuario o contraseña incorrectos");
     }
     else {
         const passwordExiste = bcryptjs_1.default.compareSync(value, userExist.password);
         if (!passwordExiste) {
-            throw new Error("Usuario o contraseña incorrectos - contra");
+            throw new Error("Usuario o contraseña incorrectos");
         }
     }
 });

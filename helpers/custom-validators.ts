@@ -41,12 +41,12 @@ export const UserExist = async (value:string='', req:any) => {
   });
 
   if (!userExist) {
-    throw new Error("Usuario o contraseña incorrectos - user");
+    throw new Error("Usuario o contraseña incorrectos");
   } else {
     const passwordExiste = bcryptjs.compareSync(value, userExist.password);
 
     if (!passwordExiste) {
-      throw new Error("Usuario o contraseña incorrectos - contra");
+      throw new Error("Usuario o contraseña incorrectos");
     }
   }
 };

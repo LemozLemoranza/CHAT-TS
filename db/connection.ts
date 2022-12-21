@@ -1,16 +1,19 @@
 import { Sequelize } from "sequelize";
+import dotenv from "dotenv";
+dotenv.config();
+
 
 const db = new Sequelize(
 
-    'u789404015_usuarios', 
+    process.env.DB as string, 
 
-    'u789404015_lemozsupremo', 
+    process.env.USUARIO as string, 
 
-    '[C4!K[S4vA9a', 
+    process.env.PASS as string, 
 
 
 {
-    host:'185.211.7.103',
+    host:process.env.HOST as string,
     dialect: 'mysql'
 })
 

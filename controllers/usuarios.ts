@@ -33,8 +33,9 @@ export const PostRegister = async(req : Request, res : Response) => {
         const password = bcryptjs.hashSync(lowerPassword, salt)
         
         const usuario = await Usuario.create({nombre, email, password});
+
         
-        return res.json({usuario})
+        return res.render('usuarios/register',{ nombre })
 }
 
 }
@@ -66,6 +67,8 @@ export const PostLogin = async(req:Request, res:Response) => {
     const token = await generarJWT(userExist.id)
 
     localStorage.setItem('token', token)
+
+    res.cookie('usuario', userExist.nombre)
 
     res.redirect('/auth')
                

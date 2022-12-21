@@ -41,8 +41,8 @@ const EmailExist = (lowerEmail) => __awaiter(void 0, void 0, void 0, function* (
     }
 });
 exports.EmailExist = EmailExist;
-const UserExist = (value = '', { req }) => __awaiter(void 0, void 0, void 0, function* () {
-    const emailLower = req.body.email;
+const UserExist = (value = '', req) => __awaiter(void 0, void 0, void 0, function* () {
+    const emailLower = req.req.body.email;
     const email = emailLower.toUpperCase();
     const userExist = yield usuario_1.default.findOne({
         where: { email },

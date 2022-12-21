@@ -23,8 +23,10 @@ export const generarJWT = async(id:string) => {
 export const validarJWT = async(req:Request, res: Response, next:NextFunction) => {
 
     const token = localStorage.getItem('token')
-    if(!token){
+    const usuarioc = req.cookies.usuario
+    if(!token || !usuarioc){
         localStorage.clear()
+        res.clearCookie('usuario')
         return res.redirect('/usuarios/login')
     }else{
         try{
@@ -41,6 +43,7 @@ export const validarJWT = async(req:Request, res: Response, next:NextFunction) =
             next()
 
         }catch(error){
+            res.clearCookie('usuario')
             localStorage.clear()
             return res.redirect('/usuarios/login')
 

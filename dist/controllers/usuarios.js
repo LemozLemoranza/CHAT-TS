@@ -39,7 +39,7 @@ const PostRegister = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         const salt = bcryptjs_1.default.genSaltSync();
         const password = bcryptjs_1.default.hashSync(lowerPassword, salt);
         const usuario = yield usuario_1.default.create({ nombre, email, password });
-        return res.json({ usuario });
+        return res.render('usuarios/register', { nombre });
     }
 });
 exports.PostRegister = PostRegister;
@@ -63,6 +63,7 @@ const PostLogin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         });
         const token = yield (0, jwt_1.generarJWT)(userExist.id);
         localStorage.setItem('token', token);
+        res.cookie('usuario', userExist.nombre);
         res.redirect('/auth');
     }
 });

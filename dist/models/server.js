@@ -13,27 +13,40 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const cors_1 = __importDefault(require("cors"));
+const http_1 = __importDefault(require("http"));
 const usuarios_1 = __importDefault(require("../routes/usuarios"));
 const auth_1 = __importDefault(require("../routes/auth"));
+const index_1 = __importDefault(require("../routes/index"));
 const connection_1 = __importDefault(require("../db/connection"));
 const path_1 = require("path");
 const express_handlebars_1 = require("express-handlebars");
-class Server {
+const socket_io_1 = require("socket.io");
+const socketController_1 = require("../sockets/socketController");
+class Servidor {
     constructor() {
         this.apiPaths = {
             usuarios: '/usuarios',
-            auth: '/auth'
+            auth: '/auth',
+            index: '/'
         };
         this.app = (0, express_1.default)();
         this.port = process.env.PORT || '8000';
+        this.server = http_1.default.createServer(this.app);
+        this.io = new socket_io_1.Server(this.server);
         this.middlewares();
         this.routes();
         this.dbConnection();
+        this.sockets();
     }
     routes() {
         this.app.use(this.apiPaths.usuarios, usuarios_1.default);
         this.app.use(this.apiPaths.auth, auth_1.default);
+        this.app.use(this.apiPaths.index, index_1.default);
+    }
+    sockets() {
+        this.io.on('connection', socketController_1.socketController);
     }
     dbConnection() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -48,6 +61,7 @@ class Server {
     }
     middlewares() {
         this.app.use((0, cors_1.default)());
+        this.app.use((0, cookie_parser_1.default)());
         this.app.use(express_1.default.json());
         this.app.use(express_1.default.static('public'));
         this.app.set('views', (0, path_1.join)(__dirname, '../views'));
@@ -61,10 +75,10 @@ class Server {
         this.app.use(express_1.default.urlencoded({ extended: false }));
     }
     listen() {
-        this.app.listen(this.port, () => {
+        this.server.listen(this.port, () => {
             console.log('Servidor corriendo en el puerto', this.port);
         });
     }
 }
-exports.default = Server;
+exports.default = Servidor;
 //# sourceMappingURL=server.js.map

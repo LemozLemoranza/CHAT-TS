@@ -1,9 +1,7 @@
 import { Router } from "express";
-import { check, validationResult } from 'express-validator';
+import { check } from 'express-validator';
 import { GetLogin, GetRegister, PostLogin, PostRegister } from '../controllers/usuarios';
-import { ValidarCampos } from "../helpers/validar-campos";
 import { NameExist, EmailExist, UserExist } from '../helpers/custom-validators';
-import { GoogleSignIn } from '../controllers/auth';
 import { validarNotJWT } from '../helpers/jwt';
 
 const router = Router();

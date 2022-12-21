@@ -1,1 +1,47 @@
-INDEX
+{{>nav-login}}
+
+
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<div class="container mt-5">
+<div class="row clearfix">
+    <div class="col-lg-12">
+        <div class="card chat-app">
+            
+            <div class="chat">
+                <div class="chat-header clearfix">
+                   <h1 class="strong">
+                   {{usuario}}
+
+                   </h1>
+                </div>
+                <div class="chat-history">
+                    <ul class="m-b-0 lista" id="divChatbox">
+                       
+                    </ul>
+                </div>
+                <form action="" id="form">
+
+                <div class="chat-message clearfix">
+                    <div class="input-group mb-0">
+
+                        
+                        <button id='sala'>
+                            <span class="input-group-text"><i class="fa fa-send"></i></span>
+                        </button>
+                        <input type="text" id="chat"class="form-control" placeholder="..." autocomplete="off">                                    
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+<script src="js/libs/jquery.min.js"></script>
+<script src="./socket.io/socket.io.js"></script>
+<script src="../../js/auth.js"></script>

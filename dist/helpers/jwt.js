@@ -30,8 +30,10 @@ const generarJWT = (id) => __awaiter(void 0, void 0, void 0, function* () {
 exports.generarJWT = generarJWT;
 const validarJWT = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const token = localStorage.getItem('token');
-    if (!token) {
+    const usuarioc = req.cookies.usuario;
+    if (!token || !usuarioc) {
         localStorage.clear();
+        res.clearCookie('usuario');
         return res.redirect('/usuarios/login');
     }
     else {
@@ -43,6 +45,7 @@ const validarJWT = (req, res, next) => __awaiter(void 0, void 0, void 0, functio
             next();
         }
         catch (error) {
+            res.clearCookie('usuario');
             localStorage.clear();
             return res.redirect('/usuarios/login');
         }

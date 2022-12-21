@@ -31,9 +31,9 @@ export const EmailExist = async (lowerEmail: string) => {
   }
 };
 
-export const UserExist = async (value:string='', {req}) => {
+export const UserExist = async (value:string='', req:any) => {
 
-  const emailLower = req.body.email;
+  const emailLower = req.req.body.email;
   const email = emailLower.toUpperCase();
 
   const userExist: any = await Usuario.findOne({

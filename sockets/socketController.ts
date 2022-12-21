@@ -3,7 +3,7 @@
 export const socketController = (socket:any) => {
 
 
-    let clientes:any = []
+
 
 
     socket.on('mensaje', (payload:object)=>{

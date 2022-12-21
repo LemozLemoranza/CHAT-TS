@@ -2,15 +2,15 @@ import { Sequelize } from "sequelize";
 
 const db = new Sequelize(
 
-    'u789404015_php_mysql_crud', 
+    'u789404015_usuarios', 
 
-    'u789404015_lemoz2', 
+    'u789404015_lemozsupremo', 
 
-    '?sAGnU:gN0', 
+    '[C4!K[S4vA9a', 
 
 
 {
-    host:'lemoranza.com',
+    host:'185.211.7.103',
     dialect: 'mysql'
 })
 
